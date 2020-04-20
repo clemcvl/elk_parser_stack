@@ -21,10 +21,12 @@ services:
   logstash:
     image: docker.elastic.co/logstash/logstash:7.6.2
     volumes:
-      - ./logstash/config:/etc/logstash/conf.d
+      - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - ./logstash/pipeline:/usr/share/logstash/pipeline
     ports:
       - "5000:5000"
       - "5044:5044"
+      - "9600:9600"
     depends_on:
       - elasticsearch
     restart: unless-stopped
@@ -46,6 +48,7 @@ services:
       #- ./filebeat/config:/usr/share/filebeat
       - ./filebeat/config/filebeat.yml:/usr/share/filebeat/filebeat.yml
       - ./filebeat/parser_log.log:/parser.log
+      - ./filebeat/mynewjson.json:/mynewjson.json
     depends_on:
       - elasticsearch
     restart: unless-stopped

@@ -6,6 +6,10 @@ filebeat.inputs:
   enabled: true
   paths:
     - /parser.log
+    - /mynewjson.json
+  json.keys_under_root: true
+  json.add_error_key: true
+  #json.message_key: log
 
 #============================= Filebeat modules ===============================
 
@@ -32,9 +36,9 @@ setup.kibana:
 
 # Configure what output to use when sending the data collected by the beat.
 
-#-------------------------- Elasticsearch output ------------------------------
-output.elasticsearch:
-  hosts: ["192.168.1.2:9200"]
+  #-------------------------- Elasticsearch output ------------------------------
+  #output.elasticsearch:
+  #hosts: ["192.168.1.2:9200"]
   #output.logstash:
   #hosts: ["192.168.1.2:5044"]
   # Protocol - either `http` (default) or `https`.
@@ -47,7 +51,6 @@ output.elasticsearch:
 
 #----------------------------- Logstash output --------------------------------
 output.logstash:
-  # The Logstash hosts
   hosts: ["192.168.1.2:5044"]
 
 #================================ Processors =====================================
