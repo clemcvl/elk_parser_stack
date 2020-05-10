@@ -23,9 +23,6 @@ def walklevel(some_dir, level=1):
             del dirnames[:]
     return mydict
 
-    
-
-
 def get_size(start_path = '/'):
     total_size = 0
     for dirpath, dirnames, filenames in walklevel(start_path):
